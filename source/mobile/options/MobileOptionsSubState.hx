@@ -76,5 +76,7 @@ class MobileOptionsSubState extends BaseOptionsMenu
 			option = new Option('Hitbox Position', 'If checked, the hitbox will be put at the bottom of the screen, otherwise will stay at the top.',
 				'hitboxPos', 'bool', true);
 			addOption(option);
-	}
-}
+
+			super();
+     	}
+    }
