@@ -42,7 +42,7 @@
       "name": "hxvlc",
       "type": "git",
       "ref": "main",
-      "url": "https://github.com/th2l-devs/vlc"
+      "url": "https://github.com/th2l-devs/hxvlc"
     },
     {
       "name": "hxcpp",
