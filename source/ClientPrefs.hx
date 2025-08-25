@@ -175,11 +175,6 @@ class ClientPrefs {
 		if(FlxG.save.data.screensaver != null) {
 			screensaver = FlxG.save.data.screensaver;
 		}
-		#if android
-		if(FlxG.save.data.storageType != null) {
-			storageType = FlxG.save.data.storageType;
-		}
-		#end
 		if(FlxG.save.data.hitboxType != null) {
 			hitboxType = FlxG.save.data.hitboxType;
 		}
