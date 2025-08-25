@@ -124,7 +124,7 @@ class VisualsUISubState extends BaseOptionsMenu
 		
 		#if CHECK_FOR_UPDATES
 		var option:Option = new Option('Check for Updates',
-			'On Release builds, turn this on to check for updates when you start the game.',
+			'On Release builds, turn this on to check for updates when you start the game.Aslo check my others games pls :D',
 			'checkForUpdates',
 			'bool',
 			true);
@@ -163,16 +163,6 @@ class VisualsUISubState extends BaseOptionsMenu
 	{
 		if(Main.fpsVar != null)
 			Main.fpsVar.visible = ClientPrefs.showFPS;
-	}
-	#end
-
-	#if sys
-	function onChangeVSync()
-	{
-		var file:String = StorageUtil.rootDir + "vsync.txt";
-		if(FileSystem.exists(file))
-			FileSystem.deleteFile(file);
-		File.saveContent(file, Std.string(ClientPrefs.vsync));
 	}
 	#end
 }
