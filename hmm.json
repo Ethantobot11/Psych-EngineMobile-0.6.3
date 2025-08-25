@@ -39,10 +39,10 @@
       "version": "2.4.0"
     },
     {
-      "name": "hxCodec",
+      "name": "hxvlc",
       "type": "git",
       "ref": "main",
-      "url": "https://github.com/Ethantobot11/hxCodec"
+      "url": "https://github.com/th2l-devs/vlc"
     },
     {
       "name": "hxcpp",
