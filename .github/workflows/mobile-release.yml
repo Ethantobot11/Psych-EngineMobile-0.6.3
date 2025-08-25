@@ -19,6 +19,11 @@ jobs:
             buildArgs: "android -final -D officialBuild"
             artifactName: androidBuild
             artifactPath: "export/release/android/bin/app/build/outputs/apk/release/*.apk"
+          - name: iOS
+            os: macos-13
+            buildArgs: "ios -final -nosign -D officialBuild"
+            artifactName: iOSBuild
+            artifactPath: "export/release/ios/build/Release-iphoneos/*.ipa"
     uses: ./.github/workflows/build.yml
     with:
         name: ${{ matrix.name }}
@@ -40,6 +45,15 @@ jobs:
 
       - name: Move Android File
         run: mv /home/runner/${{ env.PROJECT_NAME }}-release.apk /home/runner/${{ env.PROJECT_NAME }}-Android.apk
+
+      - name: Download iOS Build
+        uses: actions/download-artifact@main
+        with:
+           name: iOSBuild
+           path: ${{ github.workspace }}
+
+      - name: Zip iOS Build For Release
+        run: zip -r /home/runner/${{ env.PROJECT_NAME }}-iOS.zip ${{ github.workspace }}/${{ env.PROJECT_NAME }}.ipa
 
       - name: Publish The Release
         uses: softprops/action-gh-release@v2
