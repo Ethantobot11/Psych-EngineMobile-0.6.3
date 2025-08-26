@@ -20,20 +20,18 @@
     },
     {
       "name": "flixel",
-      "type": "git",
-      "dir": null,
-      "ref": "main",
-      "url": "https://github.com/kittycathy233/flixel"
+      "type": "haxelib",
+      "version" : "4.11.0"
     },
     {
       "name": "flixel-addons",
       "type": "haxelib",
-      "version": "3.2.1"
+      "version": "2.11.0"
     },
     {
       "name": "flixel-ui",
       "type": "haxelib",
-      "version": "2.5.0"
+      "version": "2.4.0"
     },
     {
       "name": "hscript",
