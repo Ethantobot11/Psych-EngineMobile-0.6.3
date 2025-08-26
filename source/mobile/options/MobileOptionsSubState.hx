@@ -31,16 +31,12 @@ import sys.io.File;
 
 class MobileOptionsSubState extends BaseOptionsMenu
 {
-	final lastStorageType:String = ClientPrefs.storageType;
-	#end
 	final exControlTypes:Array<String> = ["NONE", "SINGLE", "DOUBLE"];
 	final hintOptions:Array<String> = ["No Gradient", "No Gradient (Old)", "Gradient", "Hidden"];
 	var option:Option;
 
 	public function new()
 	{
-		#if android if (!externalPaths.contains('\n'))
-			storageTypes = storageTypes.concat(externalPaths); #end
 		title = 'Mobile Options';
 		rpcTitle = 'Mobile Options Menu'; // for Discord Rich Presence, fuck it
 
