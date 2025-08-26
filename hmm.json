@@ -21,13 +21,13 @@
     {
       "name": "flixel",
       "type": "git",
-      "ref": "main"
+      "ref": "main",
       "url" : "https://github.com/Ethantobot11/flixel-0.6.3"
     },
     {
       "name": "flixel-addons",
       "type": "haxelib",
-      "version": "2.11.0"
+      "version": "3.0.1"
     },
     {
       "name": "flixel-ui",
