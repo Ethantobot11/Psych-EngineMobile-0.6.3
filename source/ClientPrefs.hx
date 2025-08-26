@@ -108,9 +108,6 @@ class ClientPrefs {
 		FlxG.save.data.hitboxPos = hitboxPos;
 		FlxG.save.data.controlsAlpha = controlsAlpha;
 		FlxG.save.data.screensaver = screensaver;
-		#if android
-		FlxG.save.data.storageType = storageType;
-		#end
 		FlxG.save.data.hitboxType = hitboxType;
 		FlxG.save.data.popUpRating = popUpRating;
 		FlxG.save.data.vsync = vsync;
