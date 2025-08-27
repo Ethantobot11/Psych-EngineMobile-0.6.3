@@ -20,6 +20,7 @@ import flash.utils.ByteArray;
 #if (openfl >= "8.0.0")
 import openfl.utils.AssetType;
 #end
+import compat.FlixelSignalsCompat;
 
 /**
  * This is the universal flixel sound object, used for streaming, music, and sound effects.
