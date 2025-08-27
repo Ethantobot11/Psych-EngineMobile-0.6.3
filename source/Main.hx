@@ -113,7 +113,17 @@ class Main extends Sprite
 		}
 	
 		ClientPrefs.loadDefaultKeys();
-		addChild(new FlxGame(gameWidth, gameHeight, #if (mobile && MODS_ALLOWED) !CopyState.checkExistingFiles() ? CopyState : #end initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
+		addChild(new FlxGame(
+        Std.int(gameWidth),
+        Std.int(gameHeight),
+        #if (mobile && MODS_ALLOWED) !CopyState.checkExistingFiles() ? CopyState : #end initialState,
+        zoom,
+        Std.int(framerate),
+        Std.int(framerate),
+        skipSplash,
+        startFullscreen
+      ));
+
 
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsVar);
