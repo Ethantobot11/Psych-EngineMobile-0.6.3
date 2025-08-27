@@ -22,7 +22,7 @@ on:
 permissions: write-all
 
 env:
-  HAXE_VERSION: 4.3.6
+  HAXE_VERSION: 4.3.0
   PROJECT_NAME: PsychEngine
 
 jobs:
