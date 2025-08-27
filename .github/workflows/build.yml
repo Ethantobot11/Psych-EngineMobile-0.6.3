@@ -135,6 +135,12 @@ jobs:
           haxelib run lime config JAVA_HOME $JAVA_HOME_17_arm64
           haxelib run lime config ANDROID_SETUP true
 
+      - name: Replace MainLoop.add with compat.MainLoopCompat.add
+        run: |
+            grep -RIl --include="*.hx" "MainLoop.add(" source \
+              | xargs -I{} sed -i '' 's/\bMainLoop\.add(/compat.MainLoopCompat.add(/g' {}
+      
+
       - name: Compile
         run: haxelib run lime build ${{ inputs.buildArgs }}     
 
