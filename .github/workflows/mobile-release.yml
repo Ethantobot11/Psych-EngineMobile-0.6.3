@@ -4,8 +4,8 @@ on: workflow_dispatch
 permissions: write-all   # ✅ caller must allow write perms too
 
 env:
-  PROJECT_NAME: PibbyEngine
-  REPO_PATH: Ethantobot11/PibbyEngine-0.7.3
+  PROJECT_NAME: PsychEngine
+  REPO_PATH: Ethantobot11/PsychEngine
 
 jobs:
   get-commit-hash:
@@ -46,7 +46,7 @@ jobs:
             os: macos-13
             buildArgs: "ios -final -nosign -D officialBuild"
             artifactName: iOSBuild
-            artifactPath: "export/release/ios/build/Release-iphoneos/PibbyEngine.ipa"
+            artifactPath: "export/release/ios/build/Release-iphoneos/PsychyEngine.ipa"
     uses: ./.github/workflows/build.yml
     with:
         name: ${{ matrix.name }}
