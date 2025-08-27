@@ -75,6 +75,7 @@ import mobile.TouchButton;
 import mobile.TouchPad;
 import mobile.input.MobileInputID;
 import VideoSprite;
+import compat.MainLoopCompat;
 
 using StringTools;
 
