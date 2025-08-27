@@ -134,7 +134,7 @@
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
-	<haxelib name="hxCodec" if="VIDEOS_ALLOWED"/>
+	<haxelib name="hxvlc" if="VIDEOS_ALLOWED"/>
 	<haxelib name="faxe" if='switch'/>
 	<!--<haxelib name="polymod"/> -->
 	<haxelib name="discord_rpc" if="DISCORD_ALLOWED"/>
@@ -199,6 +199,9 @@
 	<!-- Category Type for Apple Systems -->
 	<config:ios category_type="public.app-category.music-games" />
 	<config:mac category_type="public.app-category.music-games" />
+
+	<!-- Allow Access to Engine Files for mobile-->
+	<haxedef name="SHARE_MOBILE_FILES" if="mobile" />
 
 	<!-- _________________________________ Custom _______________________________ -->
 
