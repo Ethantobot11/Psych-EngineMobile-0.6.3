@@ -1,13 +1,28 @@
 package compat;
 
 #if (flixel)
-import flixel.FlxG;
-
-// Put our typedef in the SAME package Flixel used to expose it from,
-// so existing imports continue to work without touching all call sites.
 package flixel.util;
 
-// Newer Flixel removed FlxTypedSignal. We alias it to FlxSignal so old code compiles.
+// Minimal stub for FlxSignal (newer Flixel removed it)
+class FlxSignal {
+    private var callbacks:Array<Void->Void> = [];
+
+    public function new() {}
+
+    public function add(cb:Void->Void):Void {
+        if (cb != null && callbacks.indexOf(cb) == -1) callbacks.push(cb);
+    }
+
+    public function remove(cb:Void->Void):Void {
+        callbacks.remove(cb);
+    }
+
+    public function dispatch():Void {
+        for (cb in callbacks) cb();
+    }
+}
+
+// Alias the old FlxTypedSignal to our stub
 typedef FlxTypedSignal = FlxSignal;
 
 #end
