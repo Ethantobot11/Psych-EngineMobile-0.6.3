@@ -14,6 +14,8 @@ import lime.system.System as LimeSystem;
 #if mobile
 import mobile.CopyState;
 #end
+import compat.compatMainLoopCompat;
+
 #if windows
 @:buildXml('
 <target id="haxe">
