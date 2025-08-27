@@ -14,7 +14,6 @@ import lime.system.System as LimeSystem;
 #if mobile
 import mobile.CopyState;
 #end
-import compat.MainLoopCompat;
 
 #if windows
 @:buildXml('
