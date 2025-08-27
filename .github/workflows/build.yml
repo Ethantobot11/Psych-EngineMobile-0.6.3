@@ -139,13 +139,17 @@ jobs:
         run: |
             grep -RIl --include="*.hx" "MainLoop.add(" source \
               | xargs -I{} sed -i '' 's/\bMainLoop\.add(/compat.MainLoopCompat.add(/g' {}
-              
+
+      - name: uh
+        run: |
             grep -RIl --include="*.hx" "FlxTypedSignal" source \
               | xargs -I{} sed -i 's/FlxTypedSignal/FlxSignal/g' {}
-
-            grep -RIl --include="*.hx" "FlxSignal" source \
-              | xargs -I{} sed -i 's/FlxSignal/compat.FlXSignal/g' {}
               
+      - name: h
+        run: |
+            grep -RIl --include="*.hx" "FlxSignal" source \
+             | xargs -I{} sed -i 's/FlxSignal/compat.FlXSignal/g' {}
+             
       - name: not exectlt the same but hey
         run : |
               grep -RIl --include="*.hx" "getFrameDuration()" source \
