@@ -139,7 +139,17 @@ jobs:
         run: |
             grep -RIl --include="*.hx" "MainLoop.add(" source \
               | xargs -I{} sed -i '' 's/\bMainLoop\.add(/compat.MainLoopCompat.add(/g' {}
-      
+              
+      - name: not exectlt the same but hey
+        run : |
+              grep -RIl --include="*.hx" "getFrameDuration()" source \
+                | xargs -I{} sed -i.bak 's/\bgetFrameDuration()/frames[frameIndex].duration/g' {}
+
+      - name: not exectlt the same but hey
+        run : |
+              sed -i '' 's/\bgameWidth\b/Std.int(gameWidth)/g' source/Main.hx
+              sed -i '' 's/\bgameHeight\b/Std.int(gameHeight)/g' source/Main.hx
+              sed -i '' 's/\bframerate\b/Std.int(framerate)/g' source/Main.hx
 
       - name: Compile
         run: haxelib run lime build ${{ inputs.buildArgs }}     
