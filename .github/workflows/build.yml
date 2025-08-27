@@ -134,31 +134,6 @@ jobs:
           haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_LATEST_HOME
           haxelib run lime config JAVA_HOME $JAVA_HOME_17_arm64
           haxelib run lime config ANDROID_SETUP true
-
-      - name: Patch Haxe 4.3.7 compatibility
-        run: |
-            grep -RIl --include="*.hx" "MainLoop.add(" source | while read file; do
-              sed -i '' 's/\bMainLoop.add(/compat.MainLoopCompat.add(/g' "$file"
-              if ! grep -q "import compat.MainLoopCompat;" "$file"; then
-                sed -i '' '1i\
-                import compat.MainLoopCompat;
-            ' "$file"
-                  fi
-                done
-
-            grep -RIl --include="*.hx" "FlxTypedSignal" source | while read file; do
-             sed -i '' 's/\bFlxTypedSignal\b/FlxSignal/g' "$file"
-            done
-
-
-            grep -RIl --include="*.hx" "FlxSignal" source | while read file; do
-             sed -i '' 's/\bFlxSignal\b/compat.FlXSignal/g' "$file"
-             if ! grep -q "import compat.FlixelSignalsCompat;" "$file"; then
-                sed -i '' '1i\
-            import compat.FlixelSignalsCompat;
-            ' "$file"
-                  fi
-                done
             
       - name: Compile
         run: haxelib run lime build ${{ inputs.buildArgs }}     
