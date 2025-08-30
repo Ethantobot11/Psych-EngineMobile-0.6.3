@@ -174,4 +174,5 @@ class VideoSprite extends FlxSpriteGroup {
     public function resume() {
 	    if (videoSprite != null) videoSprite.play(); // Or .resume() if supported
     }
+	#end
 }
