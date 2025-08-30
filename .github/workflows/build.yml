@@ -69,6 +69,7 @@ jobs:
 
       - name: Install Libraries
         run: |
+          haxelib remove openfl --quiet
           haxelib install hmm --quiet
           haxelib run hmm install --quiet
           haxelib install hxcpp-debug-server --quiet
