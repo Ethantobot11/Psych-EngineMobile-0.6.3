@@ -20,14 +20,13 @@
     },
     {
       "name": "flixel",
-      "type": "git",
-      "ref": "main",
-      "url" : "https://github.com/kittycathy233/flixel"
+      "type": "haxelib",
+      "ref": "4.11.0",
     },
     {
       "name": "flixel-addons",
       "type": "haxelib",
-      "version": "3.2.2"
+      "version": "2.11.0"
     },
     {
       "name": "flixel-ui",
@@ -61,7 +60,7 @@
     {
       "name": "openfl",
       "type": "haxelib",
-      "version": "9.3.3"
+      "version": "9.1.0"
     }
   ]
 }
