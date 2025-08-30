@@ -74,7 +74,7 @@ import sys.io.File;
 import mobile.TouchButton;
 import mobile.TouchPad;
 import mobile.input.MobileInputID;
-import VideoSprite;
+import objects.VideoSprite;
 import MainLoopCompat;
 import FlxSignal;
 
