@@ -47,7 +47,7 @@
     {
       "name": "hxcpp",
       "type": "git",
-      "ref": "master",
+      "ref": "main",
       "url": "https://github.com/kittycathy233/hxcpp"
     },
     {
