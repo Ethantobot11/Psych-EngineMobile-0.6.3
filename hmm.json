@@ -3,28 +3,25 @@
     {
       "name": "discord_rpc",
       "type": "git",
-      "dir": null,
       "ref": "master",
       "url": "https://github.com/Aidan63/linc_discord-rpc"
     },
     {
       "name": "linc_luajit",
       "type": "git",
-      "dir": null,
       "ref": "main",
-      "url": "https://github.com/kittycathy233/linc_luajit"
+      "url": "https://github.com/MobilePorting/linc_luajit-0.6.3"
     },
     {
       "name": "extension-androidtools",
       "type": "git",
-      "dir": null,
       "ref": "main",
       "url": "https://github.com/MAJigsaw77/extension-androidtools"
     },
     {
       "name": "flixel",
       "type": "haxelib",
-      "ref": "4.11.0"
+      "version": "4.11.0"
     },
     {
       "name": "flixel-addons",
@@ -42,25 +39,22 @@
       "version": "2.4.0"
     },
     {
-      "name": "hxvlc",
+      "name": "hxCodec",
       "type": "git",
-      "dir": null,
       "ref": "main",
-      "url": "https://github.com/th2l-devs/hxvlc"
+      "url": "https://github.com/MobilePorting/hxCodec-0.6.3"
     },
     {
       "name": "hxcpp",
       "type": "git",
-      "dir": null,
-      "ref": "main",
-      "url": "https://github.com/kittycathy233/hxcpp"
+      "ref": "master",
+      "url": "https://github.com/mcagabe19-stuff/hxcpp"
     },
     {
       "name": "lime",
       "type": "git",
-      "dir": null,
       "ref": "main",
-      "url": "https://github.com/Ethantobot11/lime2"
+      "url": "https://github.com/mcagabe19-stuff/lime"
     },
     {
       "name": "openfl",
