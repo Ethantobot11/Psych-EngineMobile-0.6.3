@@ -789,3 +789,5 @@ class FlxSound extends FlxBasic
 			LabelValuePair.weak("length", length),
 			LabelValuePair.weak("volume", volume)
 		]);
+	}
+}
