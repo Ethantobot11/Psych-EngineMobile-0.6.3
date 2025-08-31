@@ -39,7 +39,7 @@ jobs:
         include:
           - name: Android
             os: ubuntu-22.04
-            buildArgs: "android -final -D officialBuild HXCPP_CPP17"
+            buildArgs: "android -final -D officialBuild -D HXCPP_CPP17"
             artifactName: androidBuild
             artifactPath: "export/release/android/bin/app/build/outputs/apk/release/*.apk"
           - name: iOS
