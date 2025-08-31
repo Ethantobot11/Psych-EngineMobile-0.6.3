@@ -121,9 +121,9 @@ class VideoSprite extends FlxSpriteGroup {
 	{
 		if(canSkip)
 		{
-			if(Controls.instance.pressed('accept'))
-			{
-				holdingTime = Math.max(0, Math.min(_timeToSkip, holdingTime + elapsed));
+			if (controls.ACCEPT)
+            {
+                trace("accept pressed");
 			}
 			else if (holdingTime > 0)
 			{
