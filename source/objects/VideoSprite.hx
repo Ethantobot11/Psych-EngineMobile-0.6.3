@@ -12,7 +12,7 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.group.FlxSpriteGroup;
-import flixel.group.FlxGroup.FlxTypedGroup
+import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.addons.display.FlxPieDial;
 
 #if hxvlc
