@@ -1,18 +1,5 @@
 package objects;
 
-import flixel.FlxG;
-import flixel.FlxSprite;
-import flixel.FlxCamera;
-import flixel.util.FlxDestroyUtil;
-import flixel.math.FlxMath;
-import flixel.math.FlxPoint;
-import flixel.util.FlxColor;
-import flixel.util.FlxTimer;
-import flixel.text.FlxText;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import flixel.group.FlxSpriteGroup;
-import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.addons.display.FlxPieDial;
 
 #if hxvlc
@@ -54,6 +41,7 @@ class VideoSprite extends FlxSpriteGroup {
 
 		// initialize sprites
 		videoSprite = new FlxVideoSprite();
+		videoSprite.antialiasing = ClientPrefs.data.antialiasing;
 		add(videoSprite);
 		if(canSkip) this.canSkip = true;
 
@@ -121,11 +109,8 @@ class VideoSprite extends FlxSpriteGroup {
 	{
 		if(canSkip)
 		{
-			if (Controls.instance.pressed("accept"))
-			
-			}
-               trace("accept pressed");
-		    }
+			if(Controls.instance.pressed('accept'))
+			{
 				holdingTime = Math.max(0, Math.min(_timeToSkip, holdingTime + elapsed));
 			}
 			else if (holdingTime > 0)
@@ -178,16 +163,8 @@ class VideoSprite extends FlxSpriteGroup {
 		skipSprite.alpha = FlxMath.remapToRange(skipSprite.amount, 0.025, 1, 0, 1);
 	}
 
-	public function play() {
-	    if (videoSprite != null) videoSprite.play();
-    }
-
-    public function pause() {
-	    if (videoSprite != null) videoSprite.pause();
-    }
-
-    public function resume() {
-	    if (videoSprite != null) videoSprite.play(); // Or .resume() if supported
-    }
+	public function play() videoSprite?.play();
+	public function resume() videoSprite?.resume();
+	public function pause() videoSprite?.pause();
 	#end
 }
