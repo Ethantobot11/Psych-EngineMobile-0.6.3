@@ -121,7 +121,7 @@ class VideoSprite extends FlxSpriteGroup {
 	{
 		if(canSkip)
 		{
-			if (controls.ACCEPT)
+			if (Controls.instance.ACCEPT)
             {
                 trace("accept pressed");
 			}
