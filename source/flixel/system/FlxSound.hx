@@ -94,12 +94,10 @@ class FlxSound extends FlxBasic
 	 */
 	public var volume(get, set):Float;
 
-
 	/**
 	 * Set pitch, which also alters the playback speed. Default is 1.
 	 */
 	public var pitch(get, set):Float;
-
 
 	/**
 	 * The position in runtime of the music playback in milliseconds.
@@ -178,16 +176,34 @@ class FlxSound extends FlxBasic
 	 */
 	var _length:Float = 0;
 
-
 	/**
 	 * Internal tracker for pitch.
 	 */
 	var _pitch:Float = 1.0;
 
-
 	/**
 	 * Internal tracker for total volume adjustment.
-@@ -207,596 +211,581 @@
+	 */
+	var _volumeAdjust:Float = 1.0;
+
+	/**
+	 * Internal tracker for the sound's "target" (for proximity and panning).
+	 */
+	var _target:FlxObject;
+
+	/**
+	 * Internal tracker for the maximum effective radius of this sound (for proximity and panning).
+	 */
+	var _radius:Float;
+
+	/**
+	 * Internal tracker for whether to pan the sound left and right.  Default is false.
+	 */
+	var _proximityPan:Bool;
+
+	/**
+	 * Helper var to prevent the sound from playing after focus was regained when it was already paused.
+	 */
 	var _alreadyPaused:Bool = false;
 
 	/**
@@ -733,7 +749,6 @@ class FlxSound extends FlxBasic
 		return Volume;
 	}
 
-
 	inline function get_pitch():Float
 	{
 		return _pitch;
@@ -741,11 +756,8 @@ class FlxSound extends FlxBasic
 
 	function set_pitch(v:Float):Float
 	{
-
-
 		return _pitch = v;
 	}
-
 
 	inline function get_pan():Float
 	{
