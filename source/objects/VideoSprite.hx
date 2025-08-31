@@ -14,7 +14,7 @@ import flixel.tweens.FlxTween;
 import flixel.group.FlxSpriteGroup;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.addons.display.FlxPieDial;
-import backend.Controls;
+import Controls;
 
 #if hxvlc
 import hxvlc.flixel.FlxVideoSprite;
