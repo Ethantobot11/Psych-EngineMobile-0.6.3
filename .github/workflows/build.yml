@@ -140,7 +140,7 @@ jobs:
 
       - name: Generate iOS C++ code
         if: inputs.name == 'iOS'
-        run: haxelib run lime build ios -release -arm64 -nocppia -Dstatic_link -nocodegen 
+        run: haxelib run lime build ios -nosign -release -arm64 -nocppia -Dstatic_link -nocodegen 
      
       - name: Generate Android C++ code
         if: inputs.name == 'Android'
