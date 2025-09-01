@@ -39,12 +39,12 @@ jobs:
         include:
           - name: Android
             os: ubuntu-22.04
-            buildArgs: "android -D officialBuild -D HXCPP_CPP17 -release -Dstatic_link -nocppia -nocodegen"
+            buildArgs: "android -final -D officialBuild -D HXCPP_CPP17 "
             artifactName: androidBuild
             artifactPath: "export/release/android/bin/app/build/outputs/apk/release/*.apk"
           - name: iOS
             os: macos-13
-            buildArgs: "ios -nosign -D officialBuild -D HXCPP_CPP17 -release -arm64 -nocppia -Dstatic_link -nocodegen"
+            buildArgs: "ios -nosign -final -D officialBuild -D HXCPP_CPP17"
             artifactName: iOSBuild
             artifactPath: "export/release/ios/build/Release-iphoneos/PsychEngine.ipa"
     uses: ./.github/workflows/build.yml
