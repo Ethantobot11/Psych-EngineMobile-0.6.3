@@ -138,7 +138,19 @@ jobs:
           haxelib run lime config ANDROID_SETUP true
             
       - name: Compile
-        run: haxelib run lime build ${{ inputs.buildArgs }}     
+        run: haxelib run lime build ${{ inputs.buildArgs }}
+
+      - name: Patch Handle.cpp
+        if: inputs.name == 'iOS'
+        run: |
+          find export/ios/obj/src -name "Handle.cpp" -exec \
+            sed -i '' 's/std::vector args = std::vector();/std::vector<const char*> args{};/' {} +
+
+      - name: Patch Handle.cpp
+        if: inputs.name == 'Android'
+        run: |
+          find export/release/android/obj/src -name "Handle.cpp" -exec \
+            sed -i 's/std::vector args = std::vector();/std::vector<const char*> args{};/' {} +
 
       - name: Make IPA
         if: inputs.name == 'iOS'
