@@ -129,6 +129,12 @@ jobs:
           restore-keys: |
             cache-build-android
 
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+           java-version: '17'
+           distribution: 'temurin'
+
       - name: Configure Android
         if: inputs.name == 'Android'
         run: |
