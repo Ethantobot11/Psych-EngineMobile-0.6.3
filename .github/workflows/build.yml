@@ -69,7 +69,7 @@ jobs:
 
       - name: Install Libraries
         run: |
-          haxelib install hmm 2.0.2 --quiet
+          haxelib install hmm --quiet
           haxelib run hmm install --quiet
           haxelib remove openfl --quiet
           haxelib install openfl 9.1.0 --quiet
