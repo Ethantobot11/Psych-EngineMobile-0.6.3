@@ -38,13 +38,13 @@ jobs:
       matrix:
         include:
           - name: Android
-            os: macos-13
+            os: macos-15
             buildArgs: "android -final -D officialBuild"
             artifactName: androidBuild
             artifactPath: "export/release/android/bin/app/build/outputs/apk/release/*.apk"
           - name: iOS
             os: macos-13
-            buildArgs: "ios -nosign -final -D officialBuild"
+            buildArgs: "ios -final -nosign -D officialBuild"
             artifactName: iOSBuild
             artifactPath: "export/release/ios/build/Release-iphoneos/PsychEngine.ipa"
     uses: ./.github/workflows/build.yml
@@ -56,7 +56,7 @@ jobs:
         artifactPath: ${{ matrix.artifactPath }}
 
   Releaser:
-    needs: [build]
+    needs: [get-commit-hash, build]
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
