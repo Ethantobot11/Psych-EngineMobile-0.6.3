@@ -38,7 +38,7 @@ jobs:
       matrix:
         include:
           - name: Android
-            os: macos-13
+            os: macos-15
             buildArgs: "android -final -D officialBuild"
             artifactName: androidBuild
             artifactPath: "export/release/android/bin/app/build/outputs/apk/release/*.apk"
