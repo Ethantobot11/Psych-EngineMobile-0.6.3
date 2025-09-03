@@ -46,7 +46,7 @@ jobs:
             os: macos-13
             buildArgs: "ios -final -nosign -D officialBuild"
             artifactName: iOSBuild
-            artifactPath: "export/release/ios/build/Release-iphoneos/PsychEngine.ipa"
+            artifactPath: "export/release/ios/build/Release-iphoneos/PibbyEngine.ipa"
     uses: ./.github/workflows/build.yml
     with:
         name: ${{ matrix.name }}
