@@ -1,7 +1,7 @@
 package;
 
 import flixel.graphics.FlxGraphic;
-#if DISCORD_ALLOWED
+#if desktop
 import Discord.DiscordClient;
 #end
 import Section.SwagSection;
@@ -27,7 +27,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -72,7 +72,7 @@ import sys.io.File;
 #end
 
 #if VIDEOS_ALLOWED
-import vlc.MP4Handler;
+import hxvlc.flixel.FlxVideoSprite as VideoSprite;
 #end
 
 import mobile.TouchButton;
@@ -220,7 +220,7 @@ class PlayState extends MusicBeatState
 	public var camHUD:FlxCamera;
 	public var camGame:FlxCamera;
 	public var camOther:FlxCamera;
-	public var luaTpadCam:FlxCamera;
+	public var camVideo:FlxCamera;
 	public var cameraSpeed:Float = 1;
 
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
@@ -295,7 +295,7 @@ class PlayState extends MusicBeatState
 	public var opponentCameraOffset:Array<Float> = null;
 	public var girlfriendCameraOffset:Array<Float> = null;
 
-	#if DISCORD_ALLOWED
+	#if desktop
 	// Discord RPC variables
 	var storyDifficultyText:String = "";
 	var detailsText:String = "";
@@ -400,15 +400,15 @@ class PlayState extends MusicBeatState
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
 		camOther = new FlxCamera();
-		luaTpadCam = new FlxCamera();
+		camVideo = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
 		camOther.bgColor.alpha = 0;
-		luaTpadCam.bgColor.alpha = 0;
+		camVideo.bgColor.alpha = 0;
 
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD, false);
 		FlxG.cameras.add(camOther, false);
-		FlxG.cameras.add(luaTpadCam, false);
+		FlxG.cameras.add(camVideo, false);
 		grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
 
 		FlxG.cameras.setDefaultDrawTarget(camGame, true);
@@ -423,7 +423,7 @@ class PlayState extends MusicBeatState
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
 
-		#if DISCORD_ALLOWED
+		#if desktop
 		storyDifficultyText = CoolUtil.difficulties[storyDifficulty];
 
 		// String that contains the mode defined here so it isn't necessary to call changePresence for each mode
@@ -1386,7 +1386,7 @@ class PlayState extends MusicBeatState
 
 		precacheList.set('alphabet', 'image');
 	
-		#if DISCORD_ALLOWED
+		#if desktop
 		// Updating Discord Rich Presence.
 		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
 		#end
@@ -1644,13 +1644,25 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
-		var video:MP4Handler = new MP4Handler();
-		video.playVideo(filepath);
-		video.finishCallback = function()
+		var video:VideoSprite = new VideoSprite();
+		add(video);
+		video.load(filepath);
+		video.play();
+		video.cameras = [camVideo];
+		video.alpha = 1;
+		video.visible = true;
+		video.bitmap.onFormatSetup.add(function()
 		{
+			video.setGraphicSize(FlxG.width, FlxG.height);
+			video.updateHitbox();
+			video.screenCenter();
+		});
+		video.bitmap.onEndReached.add(function()
+		{
+			video.destroy();
 			startAndEnd();
 			return;
-		}
+		});
 		#else
 		FlxG.log.warn('Platform not supported!');
 		startAndEnd();
@@ -2302,7 +2314,7 @@ class PlayState extends MusicBeatState
 				daNote.visible = false;
 				daNote.ignoreNote = true;
 
-				//if (!ClientPrefs.lowQuality || !cpuControlled) daNote.kill();
+				daNote.kill();
 				unspawnNotes.remove(daNote);
 				daNote.destroy();
 			}
@@ -2318,7 +2330,7 @@ class PlayState extends MusicBeatState
 				daNote.visible = false;
 				daNote.ignoreNote = true;
 
-				//if (!ClientPrefs.lowQuality || !cpuControlled) daNote.kill();
+				daNote.kill();
 				notes.remove(daNote, true);
 				daNote.destroy();
 			}
@@ -2422,7 +2434,7 @@ class PlayState extends MusicBeatState
 				});
 		}
 
-		#if DISCORD_ALLOWED
+		#if desktop
 		// Updating Discord Rich Presence (with Time Left)
 		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength);
 		#end
@@ -2829,7 +2841,7 @@ class PlayState extends MusicBeatState
 			paused = false;
 			callOnLuas('onResume', []);
 
-			#if DISCORD_ALLOWED
+			#if desktop
 			if (startTimer != null && startTimer.finished)
 			{
 				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
@@ -3377,7 +3389,7 @@ class PlayState extends MusicBeatState
 		#end
 	}
 
-	public function openChartEditor()
+	function openChartEditor()
 	{
 		persistentUpdate = false;
 		paused = true;
@@ -3416,7 +3428,7 @@ class PlayState extends MusicBeatState
 
 				// MusicBeatState.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 
-				#if DISCORD_ALLOWED
+				#if desktop
 				// Game Over doesn't get his own variable because it's only used here
 				DiscordClient.changePresence("Game Over - " + detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
 				#end
@@ -4098,7 +4110,7 @@ class PlayState extends MusicBeatState
 			daNote.active = false;
 			daNote.visible = false;
 
-			//if (!ClientPrefs.lowQuality || !cpuControlled) daNote.kill();
+			daNote.kill();
 			notes.remove(daNote, true);
 			daNote.destroy();
 		}
@@ -4185,7 +4197,6 @@ class PlayState extends MusicBeatState
 			pixelShitPart2 = '-pixel';
 		}
 
-		if (ClientPrefs.popUpRating) {
 		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating.image + pixelShitPart2));
 		rating.cameras = [camHUD];
 		rating.screenCenter();
@@ -4375,7 +4386,7 @@ class PlayState extends MusicBeatState
 					{
 						for (doubleNote in pressNotes) {
 							if (Math.abs(doubleNote.strumTime - epicNote.strumTime) < 1) {
-								//if (!ClientPrefs.lowQuality || !cpuControlled) doubleNote.kill();
+								doubleNote.kill();
 								notes.remove(doubleNote, true);
 								doubleNote.destroy();
 							} else
@@ -4659,7 +4670,7 @@ class PlayState extends MusicBeatState
 		//Dupe note remove
 		notes.forEachAlive(function(note:Note) {
 			if (daNote != note && daNote.mustPress && daNote.noteData == note.noteData && daNote.isSustainNote == note.isSustainNote && Math.abs(daNote.strumTime - note.strumTime) < 1) {
-				//if (!ClientPrefs.lowQuality || !cpuControlled) note.kill();
+				note.kill();
 				notes.remove(note, true);
 				note.destroy();
 			}
@@ -4825,7 +4836,7 @@ class PlayState extends MusicBeatState
 				note.wasGoodHit = true;
 				if (!note.isSustainNote)
 				{
-					//if (!ClientPrefs.lowQuality || !cpuControlled) note.kill();
+					note.kill();
 					notes.remove(note, true);
 					note.destroy();
 				}
@@ -4895,7 +4906,7 @@ class PlayState extends MusicBeatState
 
 			if (!note.isSustainNote)
 			{
-				//if (!ClientPrefs.lowQuality || !cpuControlled) note.kill();
+				note.kill();
 				notes.remove(note, true);
 				note.destroy();
 			}
