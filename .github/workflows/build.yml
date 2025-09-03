@@ -22,7 +22,7 @@ on:
 permissions: write-all
 
 env:
-  HAXE_VERSION: 4.2.4
+  HAXE_VERSION: 4.3.0
   PROJECT_NAME: PsychEngine
 
 jobs:
@@ -34,7 +34,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Haxe
-        uses: krdlab/setup-haxe@v1
+        uses: krdlab/setup-haxe@master
         with:
           haxe-version: ${{ env.HAXE_VERSION }}
 
