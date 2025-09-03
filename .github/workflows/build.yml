@@ -34,7 +34,7 @@ jobs:
         uses: actions/checkout@main
 
       - name: Setup Haxe
-        uses: krdlab/setup-haxe@v1
+        uses: krdlab/setup-haxe@master
         with:
           haxe-version: ${{ env.HAXE_VERSION }}
 
@@ -128,31 +128,14 @@ jobs:
             export/release/android/obj/
           restore-keys: |
             cache-build-android
-
-      - name: Setup Java 17
-        if: inputs.name == 'Android'
-        uses: actions/setup-java@v3
-        with:
-          distribution: temurin
-          java-version: 17
-
-      - name: Setup Android SDK & NDK
-        if: inputs.name == 'Android'
-        uses: android-actions/setup-android@v2
-        with:
-          api-level: 33
-          ndk-version: 27.3.13750724
-
-      - name: Configure Lime
+     
+      - name: Configure Android
         if: inputs.name == 'Android'
         run: |
-           echo "JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
-           echo "ANDROID_HOME=$ANDROID_HOME" >> $GITHUB_ENV
-           echo "ANDROID_NDK_LATEST_HOME=$ANDROID_NDK_LATEST_HOME" >> $GITHUB_ENV
-           haxelib run lime config JAVA_HOME $JAVA_HOME
-           haxelib run lime config ANDROID_SDK $ANDROID_HOME
-           haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_LATEST_HOME
-           haxelib run lime config ANDROID_SETUP true
+          haxelib run lime config ANDROID_SDK $ANDROID_HOME
+          haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_LATEST_HOME
+          haxelib run lime config JAVA_HOME $JAVA_HOME_17_arm64
+          haxelib run lime config ANDROID_SETUP true
             
       - name: Compile
         run: haxelib run lime build ${{ inputs.buildArgs }}
