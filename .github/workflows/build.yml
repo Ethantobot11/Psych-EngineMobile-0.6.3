@@ -38,6 +38,18 @@ jobs:
         with:
           haxe-version: ${{ env.HAXE_VERSION }}
 
+      - name: Patch flash imports
+        run: |
+          echo "Patching flash.* imports to openfl.*..."
+          find ./source -type f -name "*.hx" -print0 | xargs -0 sed -i '' 's/import flash.display.BitmapData/import openfl.display.BitmapData/g'
+          find ./source -type f -name "*.hx" -print0 | xargs -0 sed -i '' 's/import flash.geom.Matrix/import openfl.geom.Matrix/g'
+          find ./source -type f -name "*.hx" -print0 | xargs -0 sed -i '' 's/import flash.geom.Point/import openfl.geom.Point/g'
+          find ./source -type f -name "*.hx" -print0 | xargs -0 sed -i '' 's/import flash.geom.Rectangle/import openfl.geom.Rectangle/g'
+          find ./.haxelib/flixel -type f -name "*.hx" -print0 | xargs -0 sed -i '' 's/import flash.display.BitmapData/import openfl.display.BitmapData/g'
+          find ./.haxelib/flixel -type f -name "*.hx" -print0 | xargs -0 sed -i '' 's/import flash.geom.Matrix/import openfl.geom.Matrix/g'
+          find ./.haxelib/flixel -type f -name "*.hx" -print0 | xargs -0 sed -i '' 's/import flash.geom.Point/import openfl.geom.Point/g'
+          find ./.haxelib/flixel -type f -name "*.hx" -print0 | xargs -0 sed -i '' 's/import flash.geom.Rectangle/import openfl.geom.Rectangle/g'
+
       - name: Restore existing build cache for faster compilation
         if: inputs.name == 'iOS'
         uses: actions/cache@v4
