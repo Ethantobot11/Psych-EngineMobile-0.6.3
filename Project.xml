@@ -123,8 +123,7 @@
 	<assets path="assets/fonts" embed='true'/>
 	<!-- _______________________________ Libraries ______________________________ -->
 
-	<haxelib name="flixel" version="5.6.1" />
-	<lime version="7.9.0" />
+	<haxelib name="flixel" />
 	<haxelib name="openfl" version="9.1.0" />
 	<haxedev set='webgl' />
 
