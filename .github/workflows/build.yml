@@ -22,7 +22,7 @@ on:
 permissions: write-all
 
 env:
-  HAXE_VERSION: 4.3.0
+  HAXE_VERSION: 4.2.5
   PROJECT_NAME: PsychEngine
 
 jobs:
@@ -34,7 +34,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Haxe
-        uses: krdlab/setup-haxe@master
+        uses: krdlab/setup-haxe@v1
         with:
           haxe-version: ${{ env.HAXE_VERSION }}
 
@@ -74,14 +74,6 @@ jobs:
           haxelib remove openfl --quiet
           haxelib install openfl 9.2.2 --quiet
           haxelib install hxcpp-debug-server --quiet
-
-      - name: Patch ALL flash imports
-        run: |
-         echo "Replacing all flash.* imports with openfl.*..."
-         find ./source ./.haxelib/flixel -type f -name "*.hx" -print0 | \
-           xargs -0 sed -i '' 's/import flash\./import openfl./g'
-         find ./source ./.haxelib/flixel -type f -name "*.hx" -print0 | \
-           xargs -0 sed -i '' 's/using flash\./using openfl./g'
      
       - name: Clearing already existing cache
         if: inputs.name == 'iOS'
