@@ -3389,7 +3389,7 @@ class PlayState extends MusicBeatState
 		#end
 	}
 
-	function openChartEditor()
+	public function openChartEditor()
 	{
 		persistentUpdate = false;
 		paused = true;
