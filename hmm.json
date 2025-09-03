@@ -41,7 +41,7 @@
     {
       "name": "hxvlc",
       "type": "haxelib",
-      "ref": "2.0.1"
+      "version": "2.0.1"
     },
     {
       "name": "hxcpp",
