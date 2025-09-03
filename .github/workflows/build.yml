@@ -130,18 +130,21 @@ jobs:
             cache-build-android
 
       - name: Setup Java 17
+        if: inputs.name == 'Android'
         uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: 17
 
       - name: Setup Android SDK & NDK
+        if: inputs.name == 'Android'
         uses: android-actions/setup-android@v2
         with:
           api-level: 33
           ndk-version: 27.3.13750724
 
       - name: Configure Lime
+        if: inputs.name == 'Android'
         run: |
            echo "JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
            echo "ANDROID_HOME=$ANDROID_HOME" >> $GITHUB_ENV
