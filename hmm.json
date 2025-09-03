@@ -40,8 +40,9 @@
     },
     {
       "name": "hxvlc",
-      "type": "haxelib",
-      "version": "2.0.1"
+      "type": "git",
+      "ref": "main",
+      "url": "https://github.com/Ethantobot11/hxvlc-0.6.3"
     },
     {
       "name": "hxcpp",
