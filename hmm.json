@@ -40,7 +40,7 @@
     },
     {
       "name": "hxvlc",
-      "haxelib": "haxelib",
+      "type": "haxelib",
       "version": "1.9.0"
     },
     {
