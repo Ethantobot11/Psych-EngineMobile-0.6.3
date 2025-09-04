@@ -124,7 +124,6 @@
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<haxelib name="flixel" />
-	<haxelib name="openfl" version="9.1.0" />
 	<haxedev set='webgl' />
 
 	<!--In case you want to use the addons package-->
@@ -213,6 +212,8 @@
 	<!--Macro fixes-->
 	<haxeflag name="--macro" value="allowPackage('flash')" />
 	<haxeflag name="--macro" value="include('my.pack')" />
+
+	<haxedef name="SHARE_MOBILE_FILES" if="mobile" />
 
 	<!-- _________________________________ Custom _______________________________ -->
 
