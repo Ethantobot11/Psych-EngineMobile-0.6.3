@@ -54,9 +54,7 @@ class FPS extends TextField
 	{
 		super();
 
-		#if !officialBuild
 		os = '\nOS: ${LimeSystem.platformName} ${getArch() != 'Unknown' ? getArch() : ''} ${(LimeSystem.platformName == LimeSystem.platformVersion || LimeSystem.platformVersion == null) ? '' : '- ' + LimeSystem.platformVersion}';
-		#end
 
 		this.x = x;
 		this.y = y;
@@ -64,10 +62,10 @@ class FPS extends TextField
 		currentFPS = 0;
 		selectable = false;
 		mouseEnabled = false;
-		defaultTextFormat = new TextFormat("_sans", 14, color);
+		defaultTextFormat = new TextFormat("_sans", 10, color);
 		autoSize = LEFT;
 		multiline = true;
-		text = "FPS: ";
+		text = "HI IM SUPPOSED BE FPS BUT SMALLER: ";
 
 		cacheCount = 0;
 		currentTime = 0;
@@ -128,7 +126,7 @@ class FPS extends TextField
 		cacheCount = currentCount;
 	}
 
-	#if windows
+	#if windows | android
 	@:functionCode('
 		SYSTEM_INFO osInfo;
 
